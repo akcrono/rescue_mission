@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+temp = Question.create(title: "first qqwer qwerqwerqwe rqwer qwer ution", description: "this q werqwer qwe rqwe rqw erqwerqwer qwer qwe rqw ew eqewr er wewr erw weqr weqr e qwqwe weq we wer we risfor eed to describe.  there should be text and more text and more text and oh my god")
+puts temp.valid?

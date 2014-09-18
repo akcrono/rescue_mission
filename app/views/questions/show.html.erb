@@ -1,0 +1,11 @@
+<h2><%=@question.title%></h2>
+<p><%=@question.description%></p>
+
+<ul>
+  <%@answers.each do |answer| %>
+    <li><%=answer.description%></li>
+  <%end%>
+</ul>
+<a href="/answers/new?question_id=<%=@question.id%>">Submit an answer</a><br>
+<%= link_to "Edit", "/questions/#{@question.id}/edit" %><br>
+<%= link_to "Delete", @question, :method => :delete, data: { confirm: 'Are you sure?' } %>

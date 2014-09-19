@@ -1,11 +1,17 @@
-<h2><%=@question.title%></h2>
-<p><%=@question.description%></p>
+<h2><%=raw(@question.title)%></h2>
+<p><%=raw(@question.description)%></p>
 
 <ul>
   <%@answers.each do |answer| %>
-    <li><%=answer.description%></li>
+    <li><%=raw(answer.description)%></li>
   <%end%>
 </ul>
-<a href="/answers/new?question_id=<%=@question.id%>">Submit an answer</a><br>
-<%= link_to "Edit", "/questions/#{@question.id}/edit" %><br>
-<%= link_to "Delete", @question, :method => :delete, data: { confirm: 'Are you sure?' } %>
+<% if current_user %>
+  <a href="/answers/new?question_id=<%=@question.id%>">Submit an answer</a><br>
+<%end%>
+<% if current_user && current_user.id == @question.user_id%>
+  <%= link_to "Edit", "/questions/#{@question.id}/edit" %><br>
+<%end%>
+<% if current_user && current_user.id == @question.user_id %>
+  <%= link_to "Delete", @question, :method => :delete, data: { confirm: 'Are you sure?' } %>
+<%end%>

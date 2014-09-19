@@ -10,7 +10,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @question.title = markdown.render(@question.title)
     @question.description = markdown.render(@question.description)
-    @answers = Answer.where(question_id: params[:id]).order(created_at: :desc)
+    @answers = Answer.where(question_id: params[:id]).order(is_best: :desc , created_at: :desc)
     @answers.each do |answer|
       answer.title = markdown.render(answer.title)
       answer.description = markdown.render(answer.description)

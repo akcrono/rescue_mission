@@ -10,11 +10,19 @@ class AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
     if @answer.save
       flash[:notice] = "Answer submitted"
-      redirect_to "/questions/#{@answer.question_id}"
+      redirect_to "/questions/#{@answer.id}"
     else
       flash[:notice] = "Invalid entry"
       render :new
     end
+  end
+
+  def toggle_favorite
+    @answer = Answer.find(params[:id])
+    @answer.is_best = !@answer.is_best
+    @answer.save
+    redirect_to "/questions/#{@answer.question_id}"
+
   end
 
   private

@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :questions
   resources :answers
 
+  put "answers/:id/vote", to: "answers#toggle_favorite"
+
   get '/auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout_path', to: 'sessions#destroy', as: 'signout'

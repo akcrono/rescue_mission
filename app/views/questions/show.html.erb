@@ -3,7 +3,11 @@
 
 <ul>
   <%@answers.each do |answer| %>
-    <li><%=raw(answer.description)%></li>
+    <li><%=raw(answer.description)%> <%= "BEST" if answer.is_best == true %><br>
+    <%if current_user && answer.user_id == current_user.id%>
+      <%= link_to "Vote", "/answers/#{answer.id}/vote", method: :put %>
+    <%end%>
+    </li>
   <%end%>
 </ul>
 <% if current_user %>
